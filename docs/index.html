@@ -1,0 +1,242 @@
+<!doctype html>
+<html lang="en" class="dark">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Governed Benefits Lookup — a XanoTS template</title>
+    <meta
+      name="description"
+      content="A permissioned, logged benefits lookup API where a support rep and an AI agent call the same endpoints, and the same role scope decides what each may read. A XanoTS proof for Play 4 (Agent Intelligence Layer) in healthcare."
+    />
+    <style>
+      :root {
+        --bg: #0a0a0b;
+        --panel: #141416;
+        --panel-2: #1b1b1e;
+        --border: #2a2a2e;
+        --fg: #f4f4f5;
+        --muted: #a1a1aa;
+        --primary: #f4f4f5;
+        --primary-fg: #18181b;
+        --green: #34d399;
+        --red: #f87171;
+        --accent: #7dd3fc;
+      }
+      * { box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--fg);
+        font: 16px/1.6 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        -webkit-font-smoothing: antialiased;
+      }
+      a { color: inherit; }
+      .wrap { max-width: 960px; margin: 0 auto; padding: 0 24px; }
+      header { border-bottom: 1px solid var(--border); padding: 64px 0 48px; }
+      .badge {
+        display: inline-flex; align-items: center; gap: 6px;
+        border: 1px solid var(--border); border-radius: 999px;
+        padding: 4px 12px; font-size: 13px; color: var(--muted);
+      }
+      h1 { font-size: 40px; line-height: 1.1; margin: 20px 0 12px; letter-spacing: -0.02em; }
+      .tagline { font-size: 19px; color: var(--fg); max-width: 720px; margin: 0 0 8px; }
+      .lead { color: var(--muted); max-width: 720px; margin: 0 0 20px; }
+      .meta {
+        display: flex; flex-wrap: wrap; gap: 8px 18px; color: var(--muted);
+        font-size: 14px; margin: 18px 0 24px; font-variant-numeric: tabular-nums;
+      }
+      .meta b { color: var(--fg); font-weight: 600; }
+      .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; }
+      .btn {
+        display: inline-flex; align-items: center; gap: 8px;
+        padding: 10px 18px; border-radius: 10px; font-weight: 600;
+        font-size: 15px; text-decoration: none; border: 1px solid transparent;
+        transition: transform 0.05s ease, background 0.15s ease;
+      }
+      .btn:active { transform: translateY(1px); }
+      .btn.primary { background: var(--primary); color: var(--primary-fg); }
+      .btn.primary:hover { background: #e4e4e7; }
+      .btn.ghost { background: transparent; border-color: var(--border); color: var(--fg); }
+      .btn.ghost:hover { background: var(--panel-2); }
+      section { padding: 44px 0; border-bottom: 1px solid var(--border); }
+      h2 { font-size: 24px; margin: 0 0 8px; letter-spacing: -0.01em; }
+      .sub { color: var(--muted); margin: 0 0 24px; }
+      .shot {
+        width: 100%; border: 1px solid var(--border); border-radius: 14px;
+        margin-top: 8px; display: block;
+      }
+      .grid { display: grid; gap: 16px; grid-template-columns: 1fr; }
+      @media (min-width: 720px) { .grid.cols-3 { grid-template-columns: repeat(3, 1fr); } }
+      .card {
+        background: var(--panel); border: 1px solid var(--border);
+        border-radius: 14px; padding: 20px;
+      }
+      .card h3 { margin: 0 0 6px; font-size: 17px; }
+      .card p { margin: 0; color: var(--muted); font-size: 14px; }
+      table { width: 100%; border-collapse: collapse; font-size: 14px; }
+      th, td { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--border); vertical-align: top; }
+      th { color: var(--muted); font-weight: 600; }
+      code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 13px; }
+      td code { color: var(--accent); white-space: nowrap; }
+      .method { color: var(--green); font-weight: 600; }
+      pre {
+        background: var(--panel-2); border: 1px solid var(--border);
+        border-radius: 12px; padding: 16px; overflow-x: auto;
+        font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 13px;
+        color: var(--fg);
+      }
+      .note {
+        background: var(--panel); border: 1px solid var(--border);
+        border-radius: 12px; padding: 16px 18px; color: var(--muted); font-size: 14px;
+      }
+      footer { padding: 36px 0 64px; color: var(--muted); font-size: 14px; }
+      ul.clean { margin: 0; padding-left: 18px; color: var(--muted); }
+      ul.clean li { margin: 6px 0; }
+      ul.clean b { color: var(--fg); }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="wrap">
+        <span class="badge">Play 4 · Agent Intelligence Layer · Healthcare</span>
+        <h1>Governed Benefits Lookup</h1>
+        <p class="tagline">
+          A support rep and an AI agent call the same benefits endpoints. The same role
+          scope decides what each one may read.
+        </p>
+        <p class="lead">
+          Out-of-scope reads are refused at the API layer, and every lookup is written to
+          an audit trail. The agent is bound by the caller's scope, so it answers benefit
+          questions without ever seeing member PII it is not scoped for.
+        </p>
+        <div class="meta">
+          <span><b>6</b> tables</span>
+          <span><b>8</b> APIs</span>
+          <span><b>5</b> functions</span>
+          <span><b>1</b> agent</span>
+          <span>Native API-layer RBAC</span>
+          <span>No LLM key required</span>
+        </div>
+        <div class="hero-actions">
+          <a class="btn primary" href="https://github.com/xano-scratch/agent-benefits-lookup-api">View on GitHub</a>
+          <a class="btn ghost" href="#use">Use this template</a>
+        </div>
+      </div>
+    </header>
+
+    <section>
+      <div class="wrap">
+        <img
+          class="shot"
+          src="screenshot.png"
+          alt="The same member looked up as a support rep and as the AI agent. The rep sees full PII; the agent has full name, date of birth, and SSN withheld, and the read is logged as refused."
+        />
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap">
+        <h2>What it demonstrates</h2>
+        <p class="sub">Data minimization for agents, enforced in one readable API layer.</p>
+        <div class="grid cols-3">
+          <div class="card">
+            <h3>One rule, two callers</h3>
+            <p>
+              A rep is scoped for PII; the agent is not. The same member endpoint returns
+              the full record to the rep and withholds full name, date of birth, and SSN
+              from the agent. The rule lives in one function both paths call.
+            </p>
+          </div>
+          <div class="card">
+            <h3>The agent obeys the scope</h3>
+            <p>
+              The ask endpoint classifies a question, then runs the same governed lookup a
+              person would, under the caller's scope. The answer's values come from
+              governed data, not the model, so a guard cannot be talked past.
+            </p>
+          </div>
+          <div class="card">
+            <h3>Every lookup is audited</h3>
+            <p>
+              Allowed and refused reads both write an audit row. The trail is restricted to
+              the governance lead role, so the agent writes to a log it cannot read.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap">
+        <h2>API surface</h2>
+        <p class="sub">Eight endpoints. Every read is scope-guarded and logged.</p>
+        <table>
+          <thead>
+            <tr><th>Method</th><th>Path</th><th>What it enforces</th></tr>
+          </thead>
+          <tbody>
+            <tr><td class="method">POST</td><td><code>/api:gblauth/login</code></td><td>Authenticate a caller, mint a scoped token.</td></tr>
+            <tr><td class="method">GET</td><td><code>/api:gblmembers/get/{member_id}</code></td><td>Read a member; PII withheld unless the caller has the pii scope.</td></tr>
+            <tr><td class="method">GET</td><td><code>/api:gblbenefits/get-coverage/{member_id}</code></td><td>Coverage summary. Requires the benefits scope.</td></tr>
+            <tr><td class="method">POST</td><td><code>/api:gblbenefits/check-eligibility</code></td><td>Covered by the plan, and a referral on file when needed.</td></tr>
+            <tr><td class="method">GET</td><td><code>/api:gblbenefits/get-remaining-limit/{member_id}</code></td><td>Annual limit minus visits used.</td></tr>
+            <tr><td class="method">POST</td><td><code>/api:gblagent/ask</code></td><td>Classify, then run the governed lookup under the caller's scope.</td></tr>
+            <tr><td class="method">GET</td><td><code>/api:gblaudit/queries</code></td><td>The audit trail. Governance lead only (403 otherwise).</td></tr>
+            <tr><td class="method">POST</td><td><code>/api:gblseed/run</code></td><td>Reset the environment to the demo fixtures.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap">
+        <h2>Three screens</h2>
+        <p class="sub">A frontend that calls the endpoints and shows the governed result.</p>
+        <ul class="clean">
+          <li><b>Scope demo.</b> The same member read as a rep and as the agent, side by side. The rep sees PII; the agent gets those fields withheld.</li>
+          <li><b>Ask the agent.</b> Ask a benefit question and watch the governed answer, the endpoint the agent called, and the allowed or refused decision.</li>
+          <li><b>Audit trail.</b> Every lookup, newest first, filterable by role and decision, plus a check that the agent gets a 403 when it tries to read the log.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="use">
+      <div class="wrap">
+        <h2>Use this template</h2>
+        <p class="sub">Start a new XanoTS app from this one. Paste this into your coding agent.</p>
+        <pre>Clone https://github.com/xano-scratch/agent-benefits-lookup-api and use it as the
+starting template for a new XanoTS app. Read its README and xano/ backend first,
+then adapt the tables, governed functions, and endpoints to my domain: [describe
+your governed-access idea here].</pre>
+        <p class="sub" style="margin-top:16px">Or clone and deploy it as is:</p>
+        <pre>git clone https://github.com/xano-scratch/agent-benefits-lookup-api.git
+cd agent-benefits-lookup-api
+npm install
+npx xanots login
+npm run xano:deploy</pre>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap">
+        <h2>Live preview</h2>
+        <div class="note">
+          The build ships to a disposable Xano environment that expires, so a shared link
+          may stop serving. The durable artifact is this repo. Clone it and run
+          <code>npm run xano:deploy</code> for a fresh live backend and frontend, seeded
+          and ready in about a minute.
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div class="wrap">
+        Built with XanoTS. Native API-layer role-based access control (an auth table,
+        scoped tokens, and per-endpoint scope guards), not row-level security. Runs on seed
+        data with no external LLM key. An experimental scratch app, not a production
+        customer reference.
+      </div>
+    </footer>
+  </body>
+</html>

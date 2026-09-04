@@ -1,0 +1,97 @@
+{
+  "version": 1,
+  "objects": {
+    "app:agent": {
+      "guid": "8fe6c1adc68a153ab4b46550a7faf4b3",
+      "canonical": "gblagent",
+      "canonical_source": "code"
+    },
+    "app:audit": {
+      "guid": "cad4174a6426a42a1e453b38ee821110",
+      "canonical": "gblaudit",
+      "canonical_source": "code"
+    },
+    "app:auth": {
+      "guid": "4fe67f5a2d319eaaca7996700f27edd8",
+      "canonical": "gblauth",
+      "canonical_source": "code"
+    },
+    "app:benefits": {
+      "guid": "fdf2cf3293a465d787ea7ff802fd5116",
+      "canonical": "gblbenefits",
+      "canonical_source": "code"
+    },
+    "app:members": {
+      "guid": "512147a95e8740a5c433d4d30c15e342",
+      "canonical": "gblmembers",
+      "canonical_source": "code"
+    },
+    "app:seed": {
+      "guid": "7110fabc369b25f0581044e47d499906",
+      "canonical": "gblseed",
+      "canonical_source": "code"
+    },
+    "dbo:access_log": {
+      "guid": "66e4b44a71780b4d9618b0a0e3d962ec"
+    },
+    "dbo:benefits": {
+      "guid": "7e0560b151d2f2cce7586e56c7abc87a"
+    },
+    "dbo:callers": {
+      "guid": "8673f4fdf0e939220ccb6be752fdd2c2"
+    },
+    "dbo:member_benefit_usage": {
+      "guid": "7cd6326dda1d5bfea7ad2a5813b6f399"
+    },
+    "dbo:members": {
+      "guid": "73429aed6abe43fb041daf0a4c6256a3"
+    },
+    "dbo:plans": {
+      "guid": "5f79df842dfc66ffd76eeb07d35444e7"
+    },
+    "function:coverage_lookup": {
+      "guid": "8aac7d4eb20cdde00f68208b951bbdcf"
+    },
+    "function:eligibility_rule": {
+      "guid": "6d1db0405a30a907115ca31147a48400"
+    },
+    "function:log_access": {
+      "guid": "e0a82bafae9efe730c39b2b8f36cf2ae"
+    },
+    "function:member_read": {
+      "guid": "649a4c820bff2e5154b68278ee677a00"
+    },
+    "function:remaining_limit": {
+      "guid": "a4b47b603dea39e43a55c67a6a8aa155"
+    },
+    "query:agent|POST|ask": {
+      "guid": "b9f26e87cca5a3d7bdee7cb35ed8e4e6"
+    },
+    "query:audit|GET|queries": {
+      "guid": "ff1b330f2c76dfd894bfbed853b591de"
+    },
+    "query:auth|POST|login": {
+      "guid": "d39d74f907baeb484e9c93358362998a"
+    },
+    "query:benefits|GET|get-coverage/{member_id}": {
+      "guid": "08979310618b7e85c68b7ef4cb07e1a0"
+    },
+    "query:benefits|GET|get-remaining-limit/{member_id}": {
+      "guid": "1cd80c6e63d831a29fb0ccb466b8ea60"
+    },
+    "query:benefits|POST|check-eligibility": {
+      "guid": "fed2dfa4613ae066422e6fa187800c96"
+    },
+    "query:members|GET|get/{member_id}": {
+      "guid": "72e59dcd0fa0e4a983bd3aaa460be8ba"
+    },
+    "query:seed|POST|run": {
+      "guid": "648d04bea4597ffab24de8eee9eb3bd2"
+    },
+    "toolset:benefits_assistant": {
+      "guid": "5192081646487760c2f0e6146f74df89",
+      "canonical": "zwYRR9HX",
+      "canonical_source": "minted"
+    }
+  }
+}
